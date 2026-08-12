@@ -26,6 +26,7 @@ type NetworkLink = {
 
 const mainSiteUrl = "https://etienne0112.github.io/MainSite/";
 const mainRepositoryUrl = "https://github.com/Etienne0112/MainSite";
+const workspaceCapacity = 20;
 
 const activeSites: WorkspaceSite[] = [
   {
@@ -50,10 +51,21 @@ const activeSites: WorkspaceSite[] = [
     url: "https://etienne0112.github.io/Study/",
     repository: "https://github.com/Etienne0112/Study",
   },
+  {
+    index: 3,
+    name: "MicroGame3D",
+    mark: "M3D",
+    description: "세 축과 색 영역의 단서를 겹쳐 숨은 고양이를 찾는 3D 논리 퍼즐.",
+    tags: ["PUZZLE", "3D LOGIC", "BROWSER GAME"],
+    status: "live",
+    accent: "acid",
+    url: "https://etienne0112.github.io/MicroGame3D/",
+    repository: "https://github.com/Etienne0112/MicroGame3D",
+  },
 ];
 
-const plannedSites: WorkspaceSite[] = Array.from({ length: 18 }, (_, offset) => {
-  const index = offset + 3;
+const plannedSites: WorkspaceSite[] = Array.from({ length: workspaceCapacity - activeSites.length }, (_, offset) => {
+  const index = offset + activeSites.length + 1;
   const accents: WorkspaceSite["accent"][] = ["acid", "ink", "red", "blue"];
 
   return {
@@ -192,7 +204,7 @@ export default function Home() {
         <section className="gateway container" aria-labelledby="hero-title">
           <div className="gateway-meta">
             <span>PERSONAL WEB NETWORK</span>
-            <span>02 CONNECTED · 18 READY</span>
+            <span>{pad(activeSites.length)} CONNECTED · {pad(plannedSites.length)} READY</span>
             <span>SEOUL / 2026</span>
           </div>
 
@@ -221,6 +233,7 @@ export default function Home() {
                 <span className="hub-core">EOW<small>MAIN</small></span>
                 <span className="route route-dr">DR</span>
                 <span className="route route-sa">SA</span>
+                <span className="route route-m3d">M3D</span>
               </div>
               <div className="launch-list">
                 {activeSites.map((site) => (
@@ -257,8 +270,8 @@ export default function Home() {
               ))}
             </div>
             <div className="capacity-summary">
-              <span><b>02</b> LIVE</span>
-              <span><b>18</b> OPEN</span>
+              <span><b>{pad(activeSites.length)}</b> LIVE</span>
+              <span><b>{pad(plannedSites.length)}</b> OPEN</span>
             </div>
           </div>
         </section>
@@ -282,7 +295,7 @@ export default function Home() {
                   aria-pressed={filter === value}
                   onClick={() => setFilter(value)}
                 >
-                  {value === "all" ? "ALL 20" : value === "live" ? "LIVE 02" : "PLANNED 18"}
+                  {value === "all" ? `ALL ${workspaceCapacity}` : value === "live" ? `LIVE ${pad(activeSites.length)}` : `PLANNED ${pad(plannedSites.length)}`}
                 </button>
               ))}
             </div>

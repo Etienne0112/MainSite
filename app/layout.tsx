@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: "/MainSite/og.png",
         width: 1536,
         height: 1024,
-        alt: "Everything of My Workspace — 02 live, 18 planned, 20 total",
+        alt: "Everything of My Workspace — 03 live, 17 planned, 20 total",
       },
     ],
   },

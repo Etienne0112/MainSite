@@ -22,9 +22,11 @@ test("renders the complete workspace directory", async () => {
   assert.match(html, /<title>Everything of My Workspace/);
   assert.match(html, /DesertRose(?:&#x27;|')s Blog/);
   assert.match(html, /Study Archive/);
+  assert.match(html, /MicroGame3D/);
+  assert.match(html, /https:\/\/etienne0112\.github\.io\/MicroGame3D\//);
   assert.match(html, /Reserved Slot 20/);
   assert.match(html, /WORKSPACE DIRECTORY/);
-  assert.match(html, /OTHER SITES \/ (?:<!-- -->)?02/);
+  assert.match(html, /OTHER SITES \/ (?:<!-- -->)?03/);
   assert.match(html, /DIRECT LINKS \/ 02/);
   assert.match(html, /https:\/\/etienne0112\.github\.io\/MainSite\//);
   assert.match(html, /https:\/\/github\.com\/Etienne0112\/MainSite/);
@@ -41,5 +43,5 @@ test("removes starter-only preview code and metadata", async () => {
   assert.doesNotMatch(page, /SkeletonPreview|_sites-preview/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
-  assert.match(page, /Array\.from\(\{ length: 18 \}/);
+  assert.match(page, /workspaceCapacity - activeSites\.length/);
 });
