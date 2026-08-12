@@ -24,6 +24,10 @@ test("renders the complete workspace directory", async () => {
   assert.match(html, /Study Archive/);
   assert.match(html, /Reserved Slot 20/);
   assert.match(html, /WORKSPACE DIRECTORY/);
+  assert.match(html, /OTHER SITES \/ (?:<!-- -->)?02/);
+  assert.match(html, /DIRECT LINKS \/ 02/);
+  assert.match(html, /https:\/\/etienne0112\.github\.io\/MainSite\//);
+  assert.match(html, /https:\/\/github\.com\/Etienne0112\/MainSite/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 

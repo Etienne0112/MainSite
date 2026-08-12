@@ -16,6 +16,17 @@ type WorkspaceSite = {
   repository?: string;
 };
 
+type NetworkLink = {
+  name: string;
+  mark: string;
+  label: string;
+  url: string;
+  accent: "red" | "blue" | "acid" | "ink";
+};
+
+const mainSiteUrl = "https://etienne0112.github.io/MainSite/";
+const mainRepositoryUrl = "https://github.com/Etienne0112/MainSite";
+
 const activeSites: WorkspaceSite[] = [
   {
     index: 1,
@@ -57,6 +68,23 @@ const plannedSites: WorkspaceSite[] = Array.from({ length: 18 }, (_, offset) => 
 });
 
 const workspaceSites = [...activeSites, ...plannedSites];
+
+const directLinks: NetworkLink[] = [
+  {
+    name: "Main Site",
+    mark: "EOW",
+    label: "모든 작업 공간의 메인 허브",
+    url: mainSiteUrl,
+    accent: "acid",
+  },
+  {
+    name: "This Repository",
+    mark: "GH",
+    label: "MainSite 소스 코드",
+    url: mainRepositoryUrl,
+    accent: "ink",
+  },
+];
 
 function pad(value: number) {
   return String(value).padStart(2, "0");
@@ -128,14 +156,31 @@ export default function Home() {
           <span className="issue-label">SITE DIRECTORY / 2026</span>
           <nav className="nav-actions" aria-label="Directory controls">
             <a className="nav-button desktop-only" href="#directory">VIEW ALL 20 ↘</a>
-            <a
-              className="nav-button desktop-only"
-              href="https://github.com/Etienne0112"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GITHUB ↗
-            </a>
+            <details className="site-network-menu">
+              <summary className="nav-button">SITES <span aria-hidden="true">＋</span></summary>
+              <div className="site-network-popover">
+                <section className="site-network-group" aria-labelledby="other-sites-label">
+                  <p className="site-network-heading" id="other-sites-label">OTHER SITES / {pad(activeSites.length)}</p>
+                  {activeSites.map((site) => (
+                    <a className="site-network-link" href={site.url} target="_blank" rel="noreferrer" key={site.name}>
+                      <span className={`site-network-mark site-network-mark--${site.accent}`}>{site.mark}</span>
+                      <span className="site-network-copy"><strong>{site.name}</strong><small>{site.description}</small></span>
+                      <span className="site-network-arrow" aria-hidden="true">↗</span>
+                    </a>
+                  ))}
+                </section>
+                <section className="site-network-group site-network-group--direct" aria-labelledby="direct-links-label">
+                  <p className="site-network-heading" id="direct-links-label">DIRECT LINKS / 02</p>
+                  {directLinks.map((link) => (
+                    <a className="site-network-link" href={link.url} target="_blank" rel="noreferrer" key={link.name}>
+                      <span className={`site-network-mark site-network-mark--${link.accent}`}>{link.mark}</span>
+                      <span className="site-network-copy"><strong>{link.name}</strong><small>{link.label}</small></span>
+                      <span className="site-network-arrow" aria-hidden="true">↗</span>
+                    </a>
+                  ))}
+                </section>
+              </div>
+            </details>
             <button className="theme-button" type="button" onClick={toggleTheme} aria-label="색상 테마 바꾸기">
               ◐
             </button>
@@ -312,9 +357,9 @@ export default function Home() {
         <div className="footer-inner">
           <p><strong>EVERYTHING OF MY WORKSPACE / SITE INDEX</strong><br />One entrance for every place I build.</p>
           <div>
-            <a href="https://etienne0112.github.io/DesertRose-s-Blog/" target="_blank" rel="noreferrer">DR BLOG</a>
+            <a href={mainSiteUrl}>MAIN SITE</a>
             <span> · </span>
-            <a href="https://etienne0112.github.io/Study/" target="_blank" rel="noreferrer">STUDY ARCHIVE</a>
+            <a href={mainRepositoryUrl} target="_blank" rel="noreferrer">THIS REPOSITORY ↗</a>
             <span> · </span>
             <a href="#top">TOP ↑</a>
           </div>
