@@ -6,8 +6,10 @@ DesertRose's Blog, Study Archive와 앞으로 추가할 개인 사이트를 한�
 
 - [DesertRose's Blog](https://etienne0112.github.io/DesertRose-s-Blog/)
 - [Study Archive](https://etienne0112.github.io/Study/)
+- [MicroGame3D](https://etienne0112.github.io/MicroGame3D/)
+- [My Site Template](https://etienne0112.github.io/SiteTemplate/)
 
-전체 디렉터리는 라이브 사이트 2개와 확장용 예약 슬롯 18개, 총 20개 카드로 구성됩니다.
+전체 디렉터리는 라이브 사이트 4개와 확장용 예약 슬롯 16개, 총 20개 카드로 구성됩니다.
 
 ## 로컬 실행
 

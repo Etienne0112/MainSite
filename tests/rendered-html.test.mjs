@@ -24,9 +24,11 @@ test("renders the complete workspace directory", async () => {
   assert.match(html, /Study Archive/);
   assert.match(html, /MicroGame3D/);
   assert.match(html, /https:\/\/etienne0112\.github\.io\/MicroGame3D\//);
+  assert.match(html, /My Site Template/);
+  assert.match(html, /https:\/\/etienne0112\.github\.io\/SiteTemplate\//);
   assert.match(html, /Reserved Slot 20/);
   assert.match(html, /WORKSPACE DIRECTORY/);
-  assert.match(html, /OTHER SITES \/ (?:<!-- -->)?03/);
+  assert.match(html, /OTHER SITES \/ (?:<!-- -->)?04/);
   assert.match(html, /DIRECT LINKS \/ 02/);
   assert.match(html, /https:\/\/etienne0112\.github\.io\/MainSite\//);
   assert.match(html, /https:\/\/github\.com\/Etienne0112\/MainSite/);

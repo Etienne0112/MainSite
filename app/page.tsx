@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import siteNetwork from "../public/site-network.json";
 
 type Filter = "all" | "live" | "planned";
 
@@ -24,45 +25,26 @@ type NetworkLink = {
   accent: "red" | "blue" | "acid" | "ink";
 };
 
-const mainSiteUrl = "https://etienne0112.github.io/MainSite/";
-const mainRepositoryUrl = "https://github.com/Etienne0112/MainSite";
 const workspaceCapacity = 20;
+const mainSite = siteNetwork.sites.find((site) => site.id === siteNetwork.mainSiteId);
 
-const activeSites: WorkspaceSite[] = [
-  {
-    index: 1,
-    name: "DesertRose's Blog",
-    mark: "DR",
-    description: "짧게 적어 둔 개발 기록. C++, 게임 개발, 알고리즘과 시행착오를 모아 둔 필드 노트.",
-    tags: ["C++", "GAME DEV", "FIELD NOTES"],
+if (!mainSite) throw new Error("The main site is missing from site-network.json.");
+
+const mainSiteUrl = mainSite.url;
+const mainRepositoryUrl = mainSite.repository;
+const activeSites: WorkspaceSite[] = siteNetwork.sites
+  .filter((site) => site.id !== siteNetwork.mainSiteId)
+  .map((site, offset) => ({
+    index: offset + 1,
+    name: site.name,
+    mark: site.mark,
+    description: site.description,
+    tags: site.tags,
     status: "live",
-    accent: "red",
-    url: "https://etienne0112.github.io/DesertRose-s-Blog/",
-    repository: "https://github.com/Etienne0112/DesertRose-s-Blog",
-  },
-  {
-    index: 2,
-    name: "Study Archive",
-    mark: "SA",
-    description: "공부하면서 쌓아 둔 긴 문서. 주제별 기록을 차곡차곡 정리한 학습 아카이브.",
-    tags: ["STUDY", "LONG NOTES", "ARCHIVE"],
-    status: "live",
-    accent: "blue",
-    url: "https://etienne0112.github.io/Study/",
-    repository: "https://github.com/Etienne0112/Study",
-  },
-  {
-    index: 3,
-    name: "MicroGame3D",
-    mark: "M3D",
-    description: "세 축과 색 영역의 단서를 겹쳐 숨은 고양이를 찾는 3D 논리 퍼즐.",
-    tags: ["PUZZLE", "3D LOGIC", "BROWSER GAME"],
-    status: "live",
-    accent: "acid",
-    url: "https://etienne0112.github.io/MicroGame3D/",
-    repository: "https://github.com/Etienne0112/MicroGame3D",
-  },
-];
+    accent: site.tone as WorkspaceSite["accent"],
+    url: site.url,
+    repository: site.repository,
+  }));
 
 const plannedSites: WorkspaceSite[] = Array.from({ length: workspaceCapacity - activeSites.length }, (_, offset) => {
   const index = offset + activeSites.length + 1;
@@ -87,7 +69,7 @@ const directLinks: NetworkLink[] = [
     mark: "EOW",
     label: "모든 작업 공간의 메인 허브",
     url: mainSiteUrl,
-    accent: "acid",
+    accent: mainSite.tone as NetworkLink["accent"],
   },
   {
     name: "This Repository",
@@ -231,9 +213,9 @@ export default function Home() {
                 <span className="orbit orbit-one" />
                 <span className="orbit orbit-two" />
                 <span className="hub-core">EOW<small>MAIN</small></span>
-                <span className="route route-dr">DR</span>
-                <span className="route route-sa">SA</span>
-                <span className="route route-m3d">M3D</span>
+                {activeSites.map((site) => (
+                  <span className={`route route-${site.accent} route-${site.index}`} key={site.name}>{site.mark}</span>
+                ))}
               </div>
               <div className="launch-list">
                 {activeSites.map((site) => (

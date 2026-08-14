@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     description: "One entrance for every place I build.",
     images: [
       {
-        url: "/MainSite/og.png",
+        url: "/MainSite/og-04.png",
         width: 1536,
         height: 1024,
-        alt: "Everything of My Workspace — 03 live, 17 planned, 20 total",
+        alt: "Everything of My Workspace — 04 live, 16 planned, 20 total",
       },
     ],
   },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Everything of My Workspace",
     description: "One entrance for every place I build.",
-    images: ["/MainSite/og.png"],
+    images: ["/MainSite/og-04.png"],
   },
   icons: {
     icon: "/MainSite/favicon.png",
