@@ -1,19 +1,21 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { copy, languageAlternates } from "./i18n";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://etienne0112.github.io"),
   title: "Everything of My Workspace — Site Directory",
-  description: "DesertRose's Blog, Study Archive와 앞으로 생길 작업 공간을 한데 모은 개인 사이트 디렉터리.",
+  description: copy.ko.metaDescription,
   alternates: {
     canonical: "/MainSite/",
+    languages: languageAlternates,
   },
   openGraph: {
     type: "website",
     url: "/MainSite/",
     siteName: "Everything of My Workspace",
     title: "Everything of My Workspace",
-    description: "One entrance for every place I build.",
+    description: copy.ko.metaDescription,
     images: [
       {
         url: "/MainSite/og-04.png",
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Everything of My Workspace",
-    description: "One entrance for every place I build.",
+    description: copy.ko.metaDescription,
     images: ["/MainSite/og-04.png"],
   },
   icons: {
